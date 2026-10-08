@@ -16,8 +16,23 @@
     {% include "fragments/header.html" %}
 
     <main class="container main">
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
         {% block content %}
         {% endblock %}
+
     </main>
 
 </body>

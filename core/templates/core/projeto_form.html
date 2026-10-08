@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Novo Projeto | SprintTasks{% endblock %}
+{% block title %}
+{% if projeto %}
+Editar Projeto
+{% else %}
+Novo Projeto
+{% endif %}
+| SprintTasks
+{% endblock %}
 
 {% block content %}
 
@@ -8,11 +15,20 @@
 
     <p class="eyebrow">PROJETO</p>
 
-    <h1>Novo projeto</h1>
+    {% if projeto %}
+        <h1>Editar projeto</h1>
 
-    <p>
-        Preencha os dados abaixo para cadastrar um novo projeto.
-    </p>
+        <p>
+            Atualize as informações do projeto.
+        </p>
+    {% else %}
+        <h1>Novo projeto</h1>
+
+        <p>
+            Preencha os dados abaixo para cadastrar um novo projeto.
+        </p>
+    {% endif %}
+
 
     <form method="post" class="form-card">
 
@@ -20,14 +36,24 @@
 
         {{ form.as_p }}
 
+
         <div class="form-actions">
 
-            <a class="btn secondary" href="{% url 'core:projeto_lista' %}">
+            <a
+                class="btn secondary"
+                href="{% url 'core:projeto_lista' %}"
+            >
                 Cancelar
             </a>
 
             <button class="btn primary" type="submit">
-                Cadastrar projeto
+
+                {% if projeto %}
+                    Salvar alterações
+                {% else %}
+                    Cadastrar projeto
+                {% endif %}
+
             </button>
 
         </div>
