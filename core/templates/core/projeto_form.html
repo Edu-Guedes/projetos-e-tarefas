@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Novo Projeto | SprintTasks{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <p class="eyebrow">PROJETO</p>
+
+    <h1>Novo projeto</h1>
+
+    <p>
+        Preencha os dados abaixo para cadastrar um novo projeto.
+    </p>
+
+    <form method="post" class="form-card">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <div class="form-actions">
+
+            <a class="btn secondary" href="{% url 'core:projeto_lista' %}">
+                Cancelar
+            </a>
+
+            <button class="btn primary" type="submit">
+                Cadastrar projeto
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
